@@ -23,8 +23,6 @@ def solve_puzzle(data):
   
     position = 50
     counter = 0
-    
-    # convert data
     for line in data:
         if line[0] == "R":
             for i in range(int(line[1:])):
@@ -50,10 +48,8 @@ def partOne(data):
 
     print(position)
 
-    # convert data
     for line in data:
         if line[0] == "R":
-
             for i in range(int(line[1:])):
                position+=1
                if position > 99:
@@ -63,13 +59,8 @@ def partOne(data):
                position-=1
                if position < 0:
                   position += 100
-           
-
-        print(position)
-
         if position == 0:
             counter +=1
-
     return(counter)
 
 load_state(FILE)
