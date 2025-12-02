@@ -41,7 +41,6 @@ def solve_puzzle(data):
                    print("invalid: " + number)
                    invalid += int(number)
 
-
     return(invalid)
 
 
