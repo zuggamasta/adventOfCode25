@@ -31,6 +31,66 @@ def solve_puzzle(data):
       my_map.append(list(line))
       new_map.append(list(line))
     
+    i = True
+    while i:
+      old_result = result
+      
+      for y,line in enumerate(my_map):
+        roll_count = 0
+
+        for x, pos in enumerate(line):
+          neighbors = []          
+          if y>0 and x>0:
+              neighbors.append(my_map[y-1][x-1]) # top left
+
+          if x>0:
+              neighbors.append(my_map[y ][x-1]) # left
+      
+          if y<len(my_map)-1 and x > 0:
+              neighbors.append(my_map[y+1][x-1]) # bottom left
+
+          if y<len(my_map)-1:
+              neighbors.append(my_map[y+1][x ]) # bottom
+
+          if y<len(my_map)-1 and x<len(line)-1:
+              neighbors.append(my_map[y+1][x+1]) # bottom right
+
+          if x<len(line)-1:
+              neighbors.append(my_map[y ][x+1]) # right
+
+          if y>0 and x<len(line)-1:
+              neighbors.append(my_map[y-1][x+1]) # right top
+
+          if y>0 :
+              neighbors.append(my_map[y-1][x ]) # top
+
+
+          intermediate = ''.join(neighbors)
+          roll_count = intermediate.count('@')
+          if roll_count < 4 and my_map[y][x] == '@':
+              new_map[y][x] = '.'
+              result += 1
+      if result == old_result:
+        i = False
+            
+        
+
+      # print_map(new_map)
+      my_map = new_map
+
+
+    return(result)
+
+def part_one(data):
+  
+    global my_map
+    result = 0
+
+    # convert data
+    for line in data:
+      my_map.append(list(line))
+      new_map.append(list(line))
+    
     for y,line in enumerate(my_map):
       roll_count = 0
 
@@ -69,6 +129,7 @@ def solve_puzzle(data):
 
     print_map(new_map)
     return(result)
+
 
 def print_map(map):
 
