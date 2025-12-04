@@ -1,11 +1,11 @@
-# Advent of Code 2024
+# Advent of Code 2025
 # @zuggamasta
 
 import time
 import os
 
 
-FILE = "example03"
+FILE = "day03"
 
 def load_state(file):
   try:
@@ -25,10 +25,29 @@ def solve_puzzle(data):
     
     # convert data
     for line in data:
-      sorted_line = ''.join(sorted(line,reverse=True))
-      result += int(sorted_line[:2])
+      # find leftmost digit and it's position
+      left = 0
+      position = 0
+      for i, number in enumerate(line):
+        if i > len(line)-2:
+          print("too_long")
+        else:
+          if int(number) > left:
+            left = int(number)
+            position = i
+      # truncate string
+      new_line = line[position+1:]
+      
+      # find largest digit in rest of the string
+      right = 0
+      for i, number in enumerate(new_line):
+        if int(number) > right:
+          right = int(number)
+      
+      intermediate = 10*left + right
+
+      result += intermediate
       
     return(result)
-
 
 load_state(FILE)
