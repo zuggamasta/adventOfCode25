@@ -21,6 +21,29 @@ def load_state(file):
 
 def solve_puzzle(data):
   
+    my_ranges = data[0].split('\n')
+    # ids = data[1].split('\n')
+    result = 0
+
+    valid = []
+
+    for my_range in my_ranges:
+      min = int(my_range.split('-')[0])
+      max = int(my_range.split('-')[1])+1
+      # print(my_range)
+      for number in enumerate(range(min,max)):
+        if number[1] not in valid:
+          # print("number: " + str(number[1]),end=", ")
+          # print("valid")
+          valid.append(int(number[1]))
+
+    result= len(valid)
+
+    return(result)
+
+
+def part_one(data):
+  
     ranges = data[0].split('\n')
     ids = data[1].split('\n')
     result = 0
@@ -34,7 +57,6 @@ def solve_puzzle(data):
         if fresh:
           result+=1
           break
-
 
     return(result)
 
